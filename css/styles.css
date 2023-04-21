@@ -43,6 +43,15 @@
   cursor: zoom-in;
 }
 
+/*+ add  my CSS */
+
+.modal img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 95%;
+  margin: 0 auto;
+}
 
 .basicLightbox:after {
   content: "";
@@ -55,3 +64,5 @@
   background-size: contain;
   background-repeat: no-repeat
 }
+
+/*- add  my CSS */

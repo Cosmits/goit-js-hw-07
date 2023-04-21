@@ -2,8 +2,7 @@ import { galleryItems } from './gallery-items.js';
 // Change code below this line
 
 const galleryUlEl = document.querySelector('.gallery');
-console.log(galleryUlEl);
-
+let instance = '';
 galleryUlEl.insertAdjacentHTML('beforeend', doGalleryList(galleryItems));
 
 galleryUlEl.addEventListener('click', onClickGalleryItems);
@@ -39,21 +38,19 @@ function onClickGalleryItems(event) {
     // console.dir(event.target.dataset.source);
 
     const original = event.target.dataset.source;
-    const instance = basicLightbox.create(
+    instance = basicLightbox.create(
         `<div class="modal">
-            <img src="${original}" width="95%">
+            <img src="${original}">
         </div>`
     );
 
     instance.show();
-
-    document.addEventListener("keydown", (event) => onEscPress(event, instance));
+    document.addEventListener("keydown", onListenerEsc);
 }
 
-
-function onEscPress(event, instance) {
+function onListenerEsc(event) {
     if (event.code !== "Escape") return;
 
-    document.removeEventListener("keydown", (event) => onEscPress(event, instance));
     instance.close();
-};
+    document.removeEventListener("keydown", onListenerEsc);
+}
